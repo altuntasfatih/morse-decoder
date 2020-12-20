@@ -38,7 +38,7 @@ spec:
           - name: SECRET_KEY_BASE
             value: super-secret-key-base
           - name: SERVICE_NAME
-            value: morse-decoder.default.svc.cluster.local
+            value: "morse-decoder.ns.svc.clust.local"
         resources: {}
         securityContext:
           privileged: false

@@ -1,11 +1,11 @@
-defmodule DistributedMorseDecoderWeb.Gettext do
+defmodule MorseDecoderWeb.Gettext do
   @moduledoc """
   A module providing Internationalization with a gettext-based API.
 
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      import DistributedMorseDecoderWeb.Gettext
+      import MorseDecoderWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -20,5 +20,5 @@ defmodule DistributedMorseDecoderWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :distributed_morse_decoder
+  use Gettext, otp_app: :morse_decoder
 end

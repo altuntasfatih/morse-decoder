@@ -1,16 +1,16 @@
-defmodule DistributedMorseDecoderWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :distributed_morse_decoder
+defmodule MorseDecoderWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :morse_decoder
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_distributed_morse_decoder_key",
+    key: "morse_decoder_key",
     signing_salt: "VYeKCJd4"
   ]
 
-  socket "/socket", DistributedMorseDecoderWeb.UserSocket,
+  socket "/socket", MorseDecoderWeb.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -20,7 +20,7 @@ defmodule DistributedMorseDecoderWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :distributed_morse_decoder,
+    from: :morse_decoder,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -41,5 +41,5 @@ defmodule DistributedMorseDecoderWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug DistributedMorseDecoderWeb.Router
+  plug MorseDecoderWeb.Router
 end

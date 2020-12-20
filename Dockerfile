@@ -12,14 +12,14 @@ RUN mix do deps.get, deps.compile, compile
 # Build Release
 RUN mkdir -p /opt/release \
     && mix release \
-    && mv _build/${MIX_ENV}/rel/distributed_morse_decoder /opt/release
+    && mv _build/${MIX_ENV}/rel/morse_decoder /opt/release
 
 
 # Create the runtime container
 FROM erlang:22 as runtime
 WORKDIR /usr/local/decoder
-COPY --from=builder /opt/release/distributed_morse_decoder .
+COPY --from=builder /opt/release/morse_decoder .
 
-CMD [ "bin/distributed_morse_decoder", "start" ]
+CMD [ "bin/morse_decoder", "start" ]
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=2 \
  CMD nc -vz -w 2 localhost 4000 || exit 1

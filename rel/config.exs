@@ -46,10 +46,9 @@ end
 # when running `mix distillery.release`, the first release in the file
 # will be used by default
 
-release :distributed_morse_decoder do
-  set version: current_version(:distributed_morse_decoder)
+release :morse_decoder do
+  set version: current_version(:morse_decoder)
   set applications: [
     :runtime_tools
   ]
 end
-

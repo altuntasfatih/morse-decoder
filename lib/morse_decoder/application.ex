@@ -1,4 +1,4 @@
-defmodule DistributedMorseDecoder.Application do
+defmodule MorseDecoder.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -9,21 +9,21 @@ defmodule DistributedMorseDecoder.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      DistributedMorseDecoderWeb.Endpoint
-      # Starts a worker by calling: DistributedMorseDecoder.Worker.start_link(arg)
-      # {DistributedMorseDecoder.Worker, arg},
+      MorseDecoderWeb.Endpoint
+      # Starts a worker by calling: MorseDecoder.Worker.start_link(arg)
+      # {MorseDecoder.Worker, arg},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: DistributedMorseDecoder.Supervisor]
+    opts = [strategy: :one_for_one, name: MorseDecoder.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    DistributedMorseDecoderWeb.Endpoint.config_change(changed, removed)
+    MorseDecoderWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

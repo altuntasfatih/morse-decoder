@@ -1,4 +1,4 @@
-defmodule DistributedMorseDecoderWeb.ErrorHelpers do
+defmodule MorseDecoderWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -25,9 +25,9 @@ defmodule DistributedMorseDecoderWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(DistributedMorseDecoderWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(MorseDecoderWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(DistributedMorseDecoderWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(MorseDecoderWeb.Gettext, "errors", msg, opts)
     end
   end
 end

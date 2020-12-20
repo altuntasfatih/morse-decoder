@@ -8,11 +8,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :distributed_morse_decoder, DistributedMorseDecoderWeb.Endpoint,
+config :morse_decoder, MorseDecoderWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "ZTH2WLTzteJzyzQ8973tSg/zv/O2zkwYM2p4w3lftpvZ0xw336Zoht9Y15kIKI4K",
-  render_errors: [view: DistributedMorseDecoderWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: DistributedMorseDecoder.PubSub, adapter: Phoenix.PubSub.PG2],
+  render_errors: [view: MorseDecoderWeb.ErrorView, accepts: ~w(json)],
+  pubsub: [name: MorseDecoder.PubSub, adapter: Phoenix.PubSub.PG2],
   live_view: [signing_salt: "SRywBWZt"]
 
 # Configures Elixir's Logger

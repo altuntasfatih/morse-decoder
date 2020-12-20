@@ -1,5 +1,5 @@
-defmodule DistributedMorseDecoderWeb.ErrorView do
-  use DistributedMorseDecoderWeb, :view
+defmodule MorseDecoderWeb.ErrorView do
+  use MorseDecoderWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

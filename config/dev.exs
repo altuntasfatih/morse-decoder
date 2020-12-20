@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :distributed_morse_decoder, DistributedMorseDecoderWeb.Endpoint,
+config :morse_decoder, MorseDecoderWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -47,8 +47,7 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-
 config :peerage,
   via: Peerage.Via.List,
-  node_list: [:"distributed_morse_decoder@127.0.0.1"],
+  node_list: [:"morse_decoder@127.0.0.1"],
   log_results: false

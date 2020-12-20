@@ -1,4 +1,4 @@
-# DistributedMorseDecoder
+# MorseDecoder
 
 To start your Phoenix server:
 

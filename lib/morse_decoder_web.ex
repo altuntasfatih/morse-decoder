@@ -1,12 +1,12 @@
-defmodule DistributedMorseDecoderWeb do
+defmodule MorseDecoderWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use DistributedMorseDecoderWeb, :controller
-      use DistributedMorseDecoderWeb, :view
+      use MorseDecoderWeb, :controller
+      use MorseDecoderWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,26 +19,26 @@ defmodule DistributedMorseDecoderWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: DistributedMorseDecoderWeb
+      use Phoenix.Controller, namespace: MorseDecoderWeb
 
       import Plug.Conn
-      import DistributedMorseDecoderWeb.Gettext
-      alias DistributedMorseDecoderWeb.Router.Helpers, as: Routes
+      import MorseDecoderWeb.Gettext
+      alias MorseDecoderWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/distributed_morse_decoder_web/templates",
-        namespace: DistributedMorseDecoderWeb
+        root: "lib/morse_decoder_web/templates",
+        namespace: MorseDecoderWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
 
-      import DistributedMorseDecoderWeb.ErrorHelpers
-      import DistributedMorseDecoderWeb.Gettext
-      alias DistributedMorseDecoderWeb.Router.Helpers, as: Routes
+      import MorseDecoderWeb.ErrorHelpers
+      import MorseDecoderWeb.Gettext
+      alias MorseDecoderWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -53,7 +53,7 @@ defmodule DistributedMorseDecoderWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import DistributedMorseDecoderWeb.Gettext
+      import MorseDecoderWeb.Gettext
     end
   end
 
