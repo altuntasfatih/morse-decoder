@@ -5,7 +5,8 @@ defmodule DistributedMorseDecoderWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", DistributedMorseDecoderWeb do
+  scope "/v1/decoder", DistributedMorseDecoderWeb do
     pipe_through :api
+    get "/", MorseController, :index
   end
 end

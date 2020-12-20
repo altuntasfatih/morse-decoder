@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: morse-decoder-deployment
+  labels:
+    app: morse-decoder
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: morse-decoder
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 34%
+      maxUnavailable: 34%
+  template:
+    metadata:
+      name: morse-decoder
+      labels:
+        app: morse-decoder
+    spec:
+      containers:
+      - name: morse-decoder
+        image: morse-decoder:latest
+        imagePullPolicy: Never
+        env:
+          - name: APP_HOST
+            value: morse-decoder.com
+          - name: HOSTNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: PORT
+            value: "4000"
+          - name: RELEASE_COOKIE
+            value: morse-decoder-secret-cookie
+          - name: SECRET_KEY_BASE
+            value: super-secret-key-base
+          - name: SERVICE_NAME
+            value: morse-decoder.default.svc.cluster.local
+        resources: {}
+        securityContext:
+          privileged: false
+          procMount: Default
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
