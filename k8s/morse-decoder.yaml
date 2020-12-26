@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: morse-decoder-deployment
+  namespace: default
   labels:
     app: morse-decoder
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: morse-decoder
@@ -37,8 +38,6 @@ spec:
             value: morse-decoder-secret-cookie
           - name: SECRET_KEY_BASE
             value: super-secret-key-base
-          - name: SERVICE_NAME
-            value: "morse-decoder.ns.svc.clust.local"
         resources: {}
         securityContext:
           privileged: false

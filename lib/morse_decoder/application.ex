@@ -6,16 +6,12 @@ defmodule MorseDecoder.Application do
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
+
     children = [
-      # Start the endpoint when the application starts
+      {Cluster.Supervisor, [Application.get_env(:libcluster, :topologies) , [name: MorseDecoder.ClusterSupervisor]]},
       MorseDecoderWeb.Endpoint
-      # Starts a worker by calling: MorseDecoder.Worker.start_link(arg)
-      # {MorseDecoder.Worker, arg},
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: MorseDecoder.Supervisor]
     Supervisor.start_link(children, opts)
   end

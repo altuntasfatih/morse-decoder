@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :morse_decoder, MorseDecoderWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: System.get_env("PORT") || 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -47,7 +47,9 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-config :peerage,
-  via: Peerage.Via.List,
-  node_list: [:"morse_decoder@127.0.0.1"],
-  log_results: false
+config :libcluster,
+  topologies: [
+    default: [
+      strategy: Cluster.Strategy.Gossip
+    ]
+  ]

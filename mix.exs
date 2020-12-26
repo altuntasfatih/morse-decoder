@@ -19,7 +19,7 @@ defmodule MorseDecoder.MixProject do
   def application do
     [
       mod: {MorseDecoder.Application, []},
-      extra_applications: [:logger, :runtime_tools, :peerage]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -32,13 +32,13 @@ defmodule MorseDecoder.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:libcluster, "~> 3.2"},
       {:phoenix, "~> 1.4.13"},
       {:phoenix_pubsub, "~> 1.1"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:peerage, "~> 1.0"}
     ]
   end
 end
