@@ -8,3 +8,10 @@ config :morse_decoder, MorseDecoderWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :libcluster,
+  topologies: [
+    default: [
+      strategy: Cluster.Strategy.Gossip
+    ]
+  ]

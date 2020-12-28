@@ -9,4 +9,9 @@ defmodule MorseDecoderWeb.Router do
     pipe_through :api
     get "/", MorseController, :index
   end
+
+  scope "/_monitoring", MorseDecoderWeb do
+    pipe_through :api
+    get "/", MorseController, :index
+  end
 end
