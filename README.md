@@ -1,4 +1,4 @@
-# MorseDecoder
+# Morse decoder application on Erlang cluster(Kubernetes).
 
 To start your Phoenix server:
 
