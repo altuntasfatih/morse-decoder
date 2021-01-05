@@ -26,6 +26,8 @@ It is a poc project that shows how to implement distributed morse-decoder on erl
  kubectl create -f k8s/morse-decoder-public-svc.yaml
     
 ```
-
-
+### Endpoints
+* POST  /v1/decoder/                                       -> Create new morse decoder session.
+* PUT   /v1/decoder/:id                                    -> Decode morse code.
+* GET   /v1/decoder/:id                                    -> Get plain text.
  
