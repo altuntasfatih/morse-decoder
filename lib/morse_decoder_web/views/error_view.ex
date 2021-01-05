@@ -16,4 +16,7 @@ defmodule MorseDecoderWeb.ErrorView do
   def render("5XX.json", %{message: message}) do
     %{error: message}
   end
+  def render("4XX.json", %{message: message}) do
+    %{error: message}
+  end
 end

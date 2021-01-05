@@ -12,7 +12,7 @@ defmodule MorseDecoder do
     |> new()
   end
 
-  defp parse(signal) do
+  defp parse(signal) when is_binary(signal) do
     case signal do
       ".-" -> "A"
       "-..." -> "B"

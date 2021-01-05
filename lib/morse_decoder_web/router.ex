@@ -10,6 +10,7 @@ defmodule MorseDecoderWeb.Router do
     get "/", MorseController, :index
     post "/", MorseController, :new
     put "/:id", MorseController, :decode
+    get "/:id", MorseController, :get
   end
 
   scope "/_monitoring", MorseDecoderWeb do

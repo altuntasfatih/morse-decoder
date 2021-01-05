@@ -6,18 +6,14 @@ defmodule MorseDecoder.Server.Test do
     {:ok, decoder: pid}
   end
 
-  test "initial state is empty", %{decoder: pid} do
+  test "it_should_create_with_empty_state", %{decoder: pid} do
     assert get(pid) == %MorseDecoder{text: ""}
   end
 
-  test "decode E", %{decoder: pid} do
-    assert decode(pid, ".") == %MorseDecoder{text: "E"}
-  end
-
-  test "decode HEY", %{decoder: pid} do
-    decode(pid, "....")
-    decode(pid, ".")
-    decode(pid, "-.--")
+  test "it_should_decode HEY", %{decoder: pid} do
+    :ok = decode(pid, "....")
+    :ok = decode(pid, ".")
+    :ok = decode(pid, "-.--")
 
     assert get(pid) == %MorseDecoder{text: "HEY"}
   end
@@ -27,6 +23,6 @@ defmodule MorseDecoder.Server.Test do
   end
 
   def decode(decoder, code) do
-    GenServer.call(decoder, {:decode, code})
+    GenServer.cast(decoder, {:decode, code})
   end
 end

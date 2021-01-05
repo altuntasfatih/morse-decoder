@@ -30,8 +30,22 @@ defmodule MorseDecoderWeb.MorseController do
   @spec decode(Plug.Conn.t(), any) :: Plug.Conn.t()
   def decode(conn, %{"id" => id, "code" => code}) do
     case MorseDecoder.decode(id, code) do
-      {:ok, state} -> conn |> put_status(:ok) |> json(state)
-      {:error, error} -> conn |> put_status(404) |> render("5XX.json", message: error)
+      :ok -> conn |> put_status(:ok)
+      {:error, err} -> error(conn, err)
     end
+  end
+
+  def get(conn, %{"id" => id}) do
+    case MorseDecoder.get(id) do
+      {:error, err} -> error(conn, err)
+      state -> conn |> put_status(:ok) |> json(%{text: state.text})
+    end
+  end
+
+  defp error(conn, err) do
+    conn
+    |> put_status(404)
+    |> put_view(MorseDecoderWeb.ErrorView)
+    |> render("4XX.json", message: err)
   end
 end

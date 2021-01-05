@@ -18,18 +18,30 @@ defmodule MorseDecoder.Server do
   end
 
   @impl true
-  def handle_call({:decode, code}, _from, state) do
+  def handle_cast({:decode, code}, state) do
     new_state = MorseDecoder.parse(state, code)
-    {:reply, new_state, new_state}
+    {:noreply, new_state}
   end
 
   def decode(id, code) when is_binary(code) do
-    case :global.whereis_name({id, __MODULE__}) do
-      pid when is_pid(pid) ->
-        GenServer.call(pid, {:put, code})
+    fn pid -> GenServer.cast(pid, {:decode, code}) end
+    |> call(id)
+  end
 
+  def get(id) do
+    fn pid -> GenServer.call(pid, :get) end
+    |> call(id)
+  end
+
+  defp call(operation, id) when is_binary(id), do: call(operation, String.to_integer(id))
+
+  defp call(operation, id) when is_integer(id) do
+    case :global.whereis_name({id, __MODULE__}) do
       :undefined ->
         {:error, "Decoder not found"}
+
+      pid ->
+        operation.(pid)
     end
   end
 end

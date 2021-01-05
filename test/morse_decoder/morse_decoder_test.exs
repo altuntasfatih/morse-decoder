@@ -2,11 +2,11 @@ defmodule MorseDecoderTest do
   use ExUnit.Case
   import MorseDecoder
 
-  test "create decoder " do
+  test "it_should_create_decoder " do
     assert new() |> get() == ""
   end
 
-  test "parse HELLO" do
+  test "it_should_parse_HELLO" do
     assert new()
            |> parse("....")
            |> parse(".")
