@@ -8,6 +8,8 @@ defmodule MorseDecoderWeb.Router do
   scope "/v1/decoder", MorseDecoderWeb do
     pipe_through :api
     get "/", MorseController, :index
+    post "/", MorseController, :new
+    put "/:id", MorseController, :decode
   end
 
   scope "/_monitoring", MorseDecoderWeb do
