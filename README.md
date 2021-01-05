@@ -1,4 +1,4 @@
-# Morse decoder application on Erlang cluster(Kubernetes).
+# Morse decoder application on Erlang cluster(Kubernetes)
 
 It is a poc project that shows how to implement distributed morse-decoder on erlang cluster.
 
@@ -9,7 +9,7 @@ It is a poc project that shows how to implement distributed morse-decoder on erl
 ### To run 
  * Local enviroment star with `MIX_ENV=dev PORT=4001 iex -S mix phx.server`. LibCluster strategy is Gossip for dev env. Start other erlang vm with different port then they will connect each others and form cluster.
  
- * Prod env runs on kubernets cluster.It uses k8 headles service to discovery node and form cluster. To deploy kubernets steps are below. (Minikube)
+ * Prod env runs on kubernets cluster. It uses k8 headless service to discovery node and form cluster. To deploy kubernets steps are below. (Minikube)
  
  ```
  
