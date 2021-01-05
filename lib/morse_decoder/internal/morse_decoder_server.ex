@@ -2,6 +2,7 @@ defmodule MorseDecoder.Server do
   use GenServer
   require Logger
 
+  @timeout 300_000
   def start_link({initial_state, id}) do
     GenServer.start_link(__MODULE__, initial_state, name: {:global, {id, __MODULE__}})
   end
@@ -9,18 +10,24 @@ defmodule MorseDecoder.Server do
   @impl true
   def init(state = %MorseDecoder{}) do
     Logger.info("MorseDecoder has been started")
-    {:ok, state}
+    {:ok, state, @timeout}
   end
 
   @impl true
   def handle_call(:get, _from, state) do
-    {:reply, state, state}
+    {:reply, state, state, @timeout}
   end
 
   @impl true
   def handle_cast({:decode, code}, state) do
     new_state = MorseDecoder.parse(state, code)
-    {:noreply, new_state}
+    {:noreply, new_state, @timeout}
+  end
+
+  @impl true
+  def handle_info(:timeout, _) do
+    Logger.info("Morse decoder shutting down ")
+    {:stop, :normal, []}
   end
 
   def decode(id, code) when is_binary(code) do

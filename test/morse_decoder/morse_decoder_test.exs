@@ -6,13 +6,15 @@ defmodule MorseDecoderTest do
     assert new() |> get() == ""
   end
 
-  test "it_should_parse_HELLO" do
+  test "it_should_parse_HELLO, " do
     assert new()
            |> parse("....")
            |> parse(".")
            |> parse(".-..")
            |> parse(".-..")
            |> parse("---")
-           |> get() == "HELLO"
+           |> parse(",")
+           |> parse(" ")
+           |> get() == "HELLO, "
   end
 end

@@ -4,6 +4,8 @@ defmodule MorseDecoder do
   """
   defstruct text: ""
 
+  @punctuations [".", ",", "!", "?", "@", ";", ":", "=", "/", " "]
+
   def new(), do: %MorseDecoder{}
   def new(text), do: %MorseDecoder{text: text}
 
@@ -49,9 +51,12 @@ defmodule MorseDecoder do
       "---.." -> "8"
       "----." -> "9"
       "-----" -> "0"
-      _ -> ""
+      s -> punctuation(s)
     end
   end
+
+  defp punctuation(signal) when signal in @punctuations, do: signal
+  defp punctuation(_), do: ""
 
   def get(%MorseDecoder{text: text}), do: text
 end
