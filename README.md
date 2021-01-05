@@ -13,17 +13,17 @@ It is a poc project that shows how to implement distributed morse-decoder on erl
  
  ```
  
-    docker build -t morse-decoder:latest .
-   
-    minikube cache add morse-decoder:latest 
-    
-    kubectl create -f k8s/morse-decoder-nodes-svc.yaml 
-    
-    kubectl create -f k8s/morse-decoder-nodes-svc.yaml 
-    
-    kubectl create -f k8s/morse-decoder.yaml 
-    
-    kubectl create -f k8s/morse-decoder-public-svc.yaml
+ docker build -t morse-decoder:latest .
+
+ minikube cache add morse-decoder:latest 
+
+ kubectl create -f k8s/morse-decoder-nodes-svc.yaml 
+
+ kubectl create -f k8s/morse-decoder-nodes-svc.yaml 
+
+ kubectl create -f k8s/morse-decoder.yaml 
+
+ kubectl create -f k8s/morse-decoder-public-svc.yaml
     
 ```
 
