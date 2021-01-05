@@ -1,18 +1,31 @@
 # Morse decoder application on Erlang cluster(Kubernetes).
 
-To start your Phoenix server:
+It is a poc project that shows how to implement distributed morse-decoder on erlang cluster.
 
+## To setup
   * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+  * Test with  `mix test`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+### To run 
+ * Local enviroment star with `MIX_ENV=dev PORT=4001 iex -S mix phx.server`. LibCluster strategy is Gossip for dev env. Start other erlang vm with different port then they will connect each others and form cluster.
+ 
+ * Prod env runs on kubernets cluster.It uses k8 headles service to discovery node and form cluster. To deploy kubernets steps are below. (Minikube)
+ 
+ ```
+ 
+    docker build -t morse-decoder:latest .
+   
+    minikube cache add morse-decoder:latest 
+    
+    kubectl create -f k8s/morse-decoder-nodes-svc.yaml 
+    
+    kubectl create -f k8s/morse-decoder-nodes-svc.yaml 
+    
+    kubectl create -f k8s/morse-decoder.yaml 
+    
+    kubectl create -f k8s/morse-decoder-public-svc.yaml
+    
+```
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+ 
