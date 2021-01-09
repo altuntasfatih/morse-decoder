@@ -7,10 +7,11 @@ It is a poc project that shows how to implement distributed morse-decoder on erl
   * Test with  `mix test`
 
 ### To run 
- * Local enviroment star with `MIX_ENV=dev PORT=4001 iex -S mix phx.server`. LibCluster strategy is Gossip for dev env. Start other erlang vm with different port then they will connect each others and form cluster.
+ * Local enviroment star with `MIX_ENV=dev PORT=4001 iex -S mix phx.server`.
+ <br> LibCluster strategy is gossip therfore other erlang vm(on same network) then they will connect each others and form cluster.
  
- * Prod env runs on kubernets cluster. It uses k8 headless service to discovery node and form cluster. To deploy kubernets steps are below. (Minikube)
- 
+ * Prod env runs on kubernets cluster. To deploy it steps are below. (Minikube)
+  <br> In prod, k8 headless service is used to discovery node and form cluster.In additions global registry was used to support discovery of process on cluster. 
  ```
  
  docker build -t morse-decoder:latest .
