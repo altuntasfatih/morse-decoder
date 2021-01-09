@@ -8,7 +8,7 @@ defmodule MorseDecoderWeb.MorseControllerTest do
 
   test "it_should_create_decode", %{conn: conn} do
     conn = post(conn, "/v1/decoder/")
-    assert %{"id" => id} = json_response(conn, 200)
+    assert %{"id" => _id} = json_response(conn, 200)
   end
 
   test "it_should_decode_code", %{conn: conn} do

@@ -6,10 +6,11 @@ defmodule MorseDecoder.Application do
   use Application
 
   def start(_type, _args) do
-
     children = [
-      {Cluster.Supervisor, [Application.get_env(:libcluster, :topologies) , [name: MorseDecoder.ClusterSupervisor]]},
+      {Cluster.Supervisor,
+       [Application.get_env(:libcluster, :topologies), [name: MorseDecoder.ClusterSupervisor]]},
       MorseDecoder.DynamicSupervisor,
+      MorseDecoder.ProcessGroup,
       MorseDecoderWeb.Endpoint
     ]
 

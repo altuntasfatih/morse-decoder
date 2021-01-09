@@ -1,15 +1,21 @@
 defmodule MorseDecoder.Server do
   use GenServer
   require Logger
+  import MorseDecoder.ProcessGroup
 
-  @timeout 300_000
+  @timeout 5_000
   def start_link({initial_state, id}) do
-    GenServer.start_link(__MODULE__, initial_state, name: {:global, {id, __MODULE__}})
+    {:ok, pid} =
+      GenServer.start_link(__MODULE__, initial_state, name: {:global, {id, __MODULE__}})
+
+    :ok = join_group({id, __MODULE__}, pid)
+    {:ok, pid}
   end
 
   @impl true
   def init(state = %MorseDecoder{}) do
     Logger.info("MorseDecoder has been started")
+
     {:ok, state, @timeout}
   end
 
@@ -50,5 +56,15 @@ defmodule MorseDecoder.Server do
       pid ->
         operation.(pid)
     end
+  end
+
+  def child_spec(opts) do
+    %{
+      id: __MODULE__,
+      start: {__MODULE__, :start_link, [opts]},
+      type: :worker,
+      restart: :transient,
+      shutdown: 500
+    }
   end
 end
